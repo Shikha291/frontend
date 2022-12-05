@@ -2,7 +2,6 @@ import "./App.css";
 import Landingpage from "./components/Landingpage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import About from "./components/About";
-import Contact from "./components/Contact";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Home from "./components/Home";
@@ -10,6 +9,8 @@ import Profile from "./components/Profile";
 import Logout from "./components/Logout";
 import AlertState from "./context/alert/AlertState";
 import Navbar from './components/Navbar';
+import Feedback from "./components/Feedback";
+import PersonalizedRecommendations from "./components/PersonalizedRecommendations";
 
 function App() {
   return (
@@ -28,12 +29,6 @@ function App() {
               activeClassName="active"
               path="/about"
               element={<About />}
-            />
-            <Route
-              exact
-              activeClassName="active"
-              path="/contact"
-              element={<Contact />}
             />
             <Route
               exact
@@ -64,6 +59,18 @@ function App() {
               activeClassName="active"
               path="/logout"
               element={<Logout />}
+            />
+            <Route
+              exact
+              activeClassName="active"
+              path="/feedback"
+              element={<Feedback />}
+            />
+            <Route
+              exact
+              activeClassName="active"
+              path="/personalized_recommendations"
+              element={<PersonalizedRecommendations />}
             />
           </Routes>
         </AlertState>

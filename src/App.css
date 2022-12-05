@@ -122,7 +122,7 @@
   transform: translateY(2px);
 }
 
-.register-main, .login-main {
+.register-main, .login-main, .profile-main {
   background-image: url('https://media.istockphoto.com/photos/purple-defocused-blurred-motion-abstract-background-picture-id1273929462?k=20&m=1273929462&s=612x612&w=0&h=jJ0xkuDVJQMp6YwnAiqbtM8nwid36M97VIFxCP_sKCE=');
   background-repeat: no-repeat;
   background-size: cover;
@@ -131,7 +131,7 @@
 }
  
          
-.register-main button, .login-main button{
+.register-main button, .login-main button, .profile-main button{
   background-image: linear-gradient(to right, #9D50BB 0%, #6E48AA  51%, #9D50BB  100%);
   margin: auto;
   margin-top: 3.5vmin;
@@ -147,7 +147,7 @@
   display: block;
 }
 
-.register-main button:hover, .login-main button:hover{
+.register-main button:hover, .login-main button:hover, .profile-main button:hover{
   background-position: right center; /* change the direction of the change here */
   color: #fff;
   text-decoration: none;
@@ -164,33 +164,44 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.profile-main .card {
+  top: 10vmin;
+  height: 54vmin;
+  padding: 2vmin;
+  margin: auto;
+  width: 78vmin;
+  border-radius: 10px;
+  background-color: rgb(250, 249, 246);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
 .login-main .card {
   top: 10vmin;
   height: 47vmin; 
 }
 
-.register-main .card form h1, .login-main .card form h1 {
+.register-main .card form h1, .login-main .card form h1, .profile-main .card form h1 {
   text-align: center;
 }
 
-.register-main .card form, .login-main .card form {
+.register-main .card form, .login-main .card form, .profile-main .card form {
   margin: 0.5vmin 12vmin;
 }
 
-.register-main .card .form-item, .login-main .card .form-item {
+.register-main .card .form-item, .login-main .card .form-item, .profile-main .card .form-item {
   display: flex;
   flex-direction: column;
 
 }
 
-.register-main .card .form-item label, .login-main .card .form-item label {
+.register-main .card .form-item label, .login-main .card .form-item label, .profile-main .card .form-item label {
   color: #333;
   font-size: 2vmin;
   font-weight: 600;
   margin-bottom: 5px;
 }
 
-.register-main .card .form-item input, .login-main .card .form-item input {
+.register-main .card .form-item input, .login-main .card .form-item input, .profile-main .card .form-item input {
   border-radius: 2.5vmin;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border: none;
@@ -249,4 +260,57 @@
   color: #333;
   font-size: 20px;
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.feed-main h1{
+  text-align: center;
+  margin:auto;
+  align-items: center;
+  align-content: center;
+  padding: 4vmin;
+  font-size: 6vmin;
+  font-family: 'Courier New', Courier, monospace;
+  color: rgb(182, 181, 181);
+}
+.feed{
+  top: 10vmin;
+  height: 40vmin;
+  padding: 2vmin; 
+  margin: auto;
+  width: 78vmin;
+  border-radius: 10px;
+  background-color: rgb(250, 249, 246);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.feed:hover{
+  box-shadow: rgba(55, 59, 61, 0.847) 0px 7px 29px 0
+}
+
+.logoutbtn {
+  padding-left: 4vmin;
+  padding-right: 4vmin;
+  font-size: 3vmin;
+  color: rgba(255,255,255,.55);
+  font-family: 'League Spartan', sans-serif;
+}
+
+.recommendations {
+  background-image: url('https://media.istockphoto.com/photos/purple-defocused-blurred-motion-abstract-background-picture-id1273929462?k=20&m=1273929462&s=612x612&w=0&h=jJ0xkuDVJQMp6YwnAiqbtM8nwid36M97VIFxCP_sKCE=');
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* height: 100vmin; */
+}
+
+.recbutton {
+  background-image: linear-gradient(to right, #9D50BB 0%, #6E48AA  51%, #9D50BB  100%);
+  margin-top: 7vmin;
+  margin-bottom: 6vmin;
+  padding: 10px 30px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  box-shadow: 0 0 20px #eee;
+  border: none;
+  display: block;
 }

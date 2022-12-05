@@ -29,7 +29,7 @@ const Navbar = () => {
       <nav className="navbar navbar-expand-sm">
         <div className="container-fluid ">
           <Link className="navbar-brand" to="/">
-            Toolkit
+            Learning Platform
           </Link>
           <button
             className="navbar-toggler"
@@ -54,9 +54,6 @@ const Navbar = () => {
                 </Link>
                 <Link className="nav-link" to="/about">
                   About
-                </Link>
-                <Link className="nav-link  pr-5" to="/contact">
-                  Contact
                 </Link>
                 <Link
                   className="nav-link"
@@ -83,16 +80,19 @@ const Navbar = () => {
                 <Link className="nav-link" to="/about">
                   About
                 </Link>
-                <Link className="nav-link  pr-5" to="/contact">
-                  Contact
+                <Link className="nav-link" to="/feedback">
+                  Feedback
+                </Link>
+                <Link className="nav-link" onClick={handleClick} to="/">
+                  Logout
                 </Link>
               </form>
-                <button
+                {/* <button
                   className="nav-link logoutbtn"
                   onClick={handleClick}
                 >
                   Logout
-                </button>
+                </button> */}
               </div>
             )}
           </div>

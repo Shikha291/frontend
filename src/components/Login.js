@@ -55,7 +55,7 @@ const Login = () => {
     } else {
       //Save the authtoken and redirect
       localStorage.setItem("token", json.access);
-      navigate("/");
+      navigate("/home");
       setdisplay("block");
       showAlert({ type: "success", msg: "Successfully Logged in" });
     }
@@ -121,40 +121,7 @@ const Login = () => {
           </button>
         </form>
       </div>
-      {/* <img src={pic} alt="" /> */}
-      {/* <div className="login">
-      <form onSubmit={handleSubmit}>
-      <div className="mb-3">
-          <label htmlFor="username" className="col-form-label">
-            Username
-          </label>
-            <input
-              type="text"
-              className="form-control"
-              id="username"
-              name="username"
-              value={credentials.username}
-              onChange={handleChange}
-            />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="inputPassword" className="col-form-label">
-            Password
-          </label>
-            <input
-              type="password"
-              className="form-control"
-              id="inputPassword"
-              name="password"
-              value={credentials.password}
-              onChange={handleChange}
-            />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-        </form>
-      </div> */}
+      
     </div>
   );
 };

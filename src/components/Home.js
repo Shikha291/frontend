@@ -1,56 +1,79 @@
-import React, { useState } from "react";
-// import { youtube } from "./apis";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import Navbar from "./Navbar";
+import { useNavigate } from "react-router";
+import Recommendations from "./Recommendations";
+
+// import ResourceItem from './ResourceItem'
+
 const Home = () => {
-  const [Tech, setTech] = useState("");
-  const handleChange = (e) => {
-    setTech(e.target.value);
-  };
-  const handleSubmit = (e) => {
-    console.log(Tech);
-  };
-  const youtubeCall = async () => {
-    const YOUTUBE_API_KEY = "AIzaSyA78Bfr50t93zRCpnypkxEUulcpGFdgIA0"
-    console.log("Ready to get Youtube data!");
-    const url = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&type=video&part=snippet&q=JavaScript`;
+  const [resource1, setResource1] = useState();
+  const [resource2, setresource2] = useState();
+  const navigate = useNavigate();
+  const [counter, setCounter] = useState();
+  const [isProfileCreated, setisProfileCreated] = useState(0)
+  const updateResource = async () => {
+    const responseProfile = await fetch("http://127.0.0.1:8000/profile/", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        // "Access-Control-Request-Headers": "http://127.0.0.1:3000/",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    console.log(responseProfile);
+    const jsonProfile = await responseProfile.json();
+    console.log(jsonProfile);
+    const responseGeneral = await fetch(
+      "http://127.0.0.1:8000/general_recommendations/",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          // "Access-Control-Request-Headers": "http://127.0.0.1:3000/",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    console.log(responseGeneral);
   
-    const response = await fetch(url);
-    const data = await response.json();
-    const items = data.items
-    for(let i=0;i<items.length;i++)
-    {
-      let url1 = `https://www.youtube.com/watch?v=${items[i].id.videoId}`;
-      console.log(url1)
+    const jsonGeneral = await responseGeneral.json();
+    setResource1(jsonGeneral);
+    console.log(jsonGeneral);
+    // console.log(jsonProfile.length)
+    if (jsonProfile.length == 1) {
+      setisProfileCreated(1);
+      const responsePersonal = await fetch(
+        "http://127.0.0.1:8000/personalized_recommendations/",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            // "Access-Control-Request-Headers": "http://127.0.0.1:3000/",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      console.log(responsePersonal);
+      const jsonPersonal = await responsePersonal.json();
+      setresource2(jsonPersonal);
+      console.log(jsonPersonal);
     }
-  }
+
+
+  };
+
+const incCounter = async () => {
+  setCounter(1);
+}
+  useEffect(async () => {
+    await updateResource();
+    await incCounter();
+  }, []);
+
   return (
     <div>
-      <Navbar />
-      <div className="d-flex container">
-        <button onClick={youtubeCall}>Call Youtube API</button>
-        {/* <div className="recommend p-5 flex-grow-1">
-          <h1>Recommendations For You!!</h1>
-          <div className="r-card mt-5 card" style={{ width: "35rem", height:"25rem" }}>
-            <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
-              <p className="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <a href="#" class="card-link">
-                Card link
-              </a>
-              <a href="#" class="card-link">
-                Another link
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="links p-5">
-          <h1>Explore your Interests!!</h1>
-        </div> */}
-      </div>
+      {/* {updateResource} */}
+    {counter && <Recommendations ProfileCreated={isProfileCreated} generalResource={resource1} personalResource={resource2}/>}
     </div>
   );
 };

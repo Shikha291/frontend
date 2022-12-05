@@ -115,7 +115,7 @@ const Register = () => {
           </div>
           <div className="mb-3 form-item">
             <label htmlFor="inputPassword" className="col-form-label">
-              Password2
+              Confirm Password
             </label>
             <input
               type="password"

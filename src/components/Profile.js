@@ -12,11 +12,12 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     //API Call
+    console.log('profile')
     const response = await fetch("http://127.0.0.1:8000/connect/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Request-Headers": "http://127.0.0.1:3000/",
+        // "Access-Control-Request-Headers": "http://127.0.0.1:3000/",
         "Authorization":`Bearer ${localStorage.getItem('token')}`,
       },
       body: JSON.stringify({
@@ -25,21 +26,24 @@ const Profile = () => {
         skills_to_learn: credentials.skills_to_learn
       }),
     });
+    console.log(response);
     const json = await response.json();
     console.log(json);
     if (!response.ok) {
       console.log({status: response.status, message: response.statusText});
 
     } else {
+      console.log("worked!!")
       navigate("/home");      
     }
   }
   return (
     <div className="profile-main">
       <Navbar />
-      <div className="profile">
+      <div className="card">
       <form onSubmit={handleSubmit}>
-      <div className="mb-3">
+      <h1>Enter your details</h1>
+      <div className="mb-3 form-item">
           <label htmlFor="linkedin" className="col-form-label">
             Enter your Linkedin Profile link
           </label>
@@ -48,11 +52,11 @@ const Profile = () => {
               className="form-control"
               id="linkedin"
               name="linkedin"
-              value={credentials.username}
+              value={credentials.linkedin}
               onChange={handleChange}
             />
         </div>
-        <div className="mb-3">
+        <div className="mb-3 form-item">
           <label htmlFor="github" className="form-label">
             Enter your Github Username
           </label>
@@ -61,24 +65,23 @@ const Profile = () => {
             className="form-control"
             id="github"
             name="github"
-            value={credentials.email}
+            value={credentials.github}
             onChange={handleChange}
           />
         </div>
-        <div className="mb-3">
-          <label htmlFor="skills" className="col-form-label">
-            What skills are you interested in learning?
+        <div className="mb-3 form-item">
+          <label htmlFor="skills_to_learn" className="form-label">
+            What skills do you want to learn?
           </label>
-            <input
-              type="text"
-              className="form-control"
-              id="skills"
-              name="skills"
-              value={credentials.fname}
-              onChange={handleChange}
-            />
+          <input
+            type="text"
+            className="form-control"
+            id="skills_to_learn"
+            name="skills_to_learn"
+            value={credentials.skills_to_learn}
+            onChange={handleChange}
+          />
         </div>
-        
         <button type="submit" className="btn btn-primary">
           Submit
         </button>
